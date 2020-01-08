@@ -29,6 +29,8 @@ export function registerFirestore(instance: FirebaseNamespace): void {
   instance.registerVersion(name, version);
 }
 
+var Xd;xd(Xd=Zd),console.log(JSON.stringify([...Object.keys(Xd)])),Xd.registerVersion("@firebase/firestore","1.9.1")}).apply(this,arguments)}catch(t){throw console.error(t),new Error("Cannot instantiate firebase-firestore - be sure to load firebase-app.js first.")}});
+
 registerFirestore(firebase);
 
 declare module '@firebase/app-types' {

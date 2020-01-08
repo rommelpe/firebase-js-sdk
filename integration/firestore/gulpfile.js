@@ -34,7 +34,10 @@ function copyTests() {
    * Therefore these tests and helpers cannot have any src/ dependencies.
    */
   const testBase = resolve(__dirname, '../../packages/firestore/test');
-  const firebaseSdk = resolve(__dirname, '../../packages/firebase/firebase.js');
+  const firebaseSdk = resolve(
+    __dirname,
+    '../../packages/firebase/firebase-app.js'
+  );
   return gulp
     .src(
       [
@@ -42,7 +45,8 @@ function copyTests() {
         testBase + '/integration/util/events_accumulator.ts',
         testBase + '/integration/util/helpers.ts',
         testBase + '/util/equality_matcher.ts',
-        testBase + '/util/promise.ts'
+        testBase + '/util/promise.ts',
+        testBase + '/integration/util/firebase_export.ts'
       ],
       { base: '../../packages/firestore' }
     )
@@ -57,8 +61,8 @@ function copyTests() {
          * It will handle variations in whitespace, single/double quote
          * differences, as well as different paths to a valid firebase_export
          */
-        /import\s+firebase\s+from\s+('|")[^\1]+firebase_export\1;?/,
-        `import * as firebase from '${firebaseSdk}';`
+        /import firebase from '@firebase\/app';/,
+        `import * as firebase from '${firebaseSdk}'; import '/Users/mrschmidt/GitHub/firebase/firebase-js-sdk/packages/firestore/dist/index.esm.js';`
       )
     )
     .pipe(
